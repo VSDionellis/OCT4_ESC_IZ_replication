@@ -1,5 +1,5 @@
 #!/usr/bin/bash
-#
+##
 #requirements:
 #1.bedtools
 #2.bigWigAverageOverBed (https://hgdownload.cse.ucsc.edu/admin/exe/linux.x86_64/)
