@@ -4,7 +4,7 @@
 #1.bedtools
 #2.bigWigAverageOverBed (https://hgdownload.cse.ucsc.edu/admin/exe/linux.x86_64/)
 #3.datamash 
-#modify sensitivity-specificity line 36. Change the perc value of "datamash perc:95".
+#modify sensitivity-specificity line 36,54,77. Change the perc value of "datamash perc:95".
 #If peaks are many and close enough modify bedtools merge -d values in lines 59,82
 echo
 echo "Give me the reference genome coordinates in bed format [chr start end]"
