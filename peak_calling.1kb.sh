@@ -1,4 +1,4 @@
-#!/usr/bin/bas
+#!/usr/bin/bash
 #
 #requirements:
 #1.bedtools
