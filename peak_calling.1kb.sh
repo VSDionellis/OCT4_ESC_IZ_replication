@@ -6,7 +6,7 @@
 #3.datamash 
 #Adjust sensitivity-specificity in line 36 by modifying the perc value of "datamash perc:95". 
 #To split broader peaks with multiple summits modify perc value in lines 54,77.
-#If peaks are too many and close enough, potential sequencing gaps or artifacts, just merge the detected peaks by bedtools merge -d values in lines 59,82, where -d applies for the distance in bases (e.g. -d 10000 stands for merging peaks found in a distance of less than 10kb).
+#If peaks are too many and close enough, potential sequencing gaps or artifacts, just merge the detected peaks by bedtools merge -d values in lines 37,60,83, where -d applies for the distance in bases (e.g. -d 10000 stands for merging peaks found in a distance of less than 10kb).
 echo
 echo "Give me the reference genome coordinates in bed format [chr start end]"
 read reference_bed
@@ -34,7 +34,7 @@ ls *chr*.1kb.bed | sed "s/.bed//g" | xargs -P$threads -I{} sh -c 'paste {}.bed {
 echo
 echo "STEP5: get global first pass peaks per chromosome"
 for f in *.1kb.signal.bed
- do echo $(cat $f | datamash perc:95 5) | paste $f - | awk -v OFS="\t" '{if(NF==5)$6=p FS $6; else p=$6 FS $6}1' | cut -d ' ' -f1 | awk '$5 > $6' | bedtools merge -d 1 -i - | awk -v OFS="\t" '{print $1,$2,$3,$1"_region"NR}' > ${f%.1kb.signal.bed}.first_pass.peaks.bed
+ do echo $(cat $f | datamash perc:95 5) | paste $f - | awk -v OFS="\t" '{if(NF==5)$6=p FS $6; else p=$6 FS $6}1' | cut -d ' ' -f1 | awk '$5 > $6' | bedtools merge -d 2000 -i - | awk -v OFS="\t" '{print $1,$2,$3,$1"_region"NR}' > ${f%.1kb.signal.bed}.first_pass.peaks.bed
 done 
 echo
 echo "STEP6: binning first pass peaks in 1kb windows and annotate"
