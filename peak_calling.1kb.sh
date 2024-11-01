@@ -55,7 +55,7 @@ for f in *.first_pass.peaks.1kb.annotated.signal.bed
  do sed 's/\(.*\)_/\1\t/' $f | cut -f4,6 | datamash -W groupby 1 perc:50 2 > ${f%.bed}.median.txt
 done
 echo
-echo "STEP10: get local first second peaks per chromosome"
+echo "STEP10: get local second peaks per chromosome"
 for f in *.first_pass.peaks.1kb.annotated.signal.bed
  do sed "s/\(.*\)_/\1\t/" $f | cut -f1-4,6 | join -1 4 -2 1 - ${f%.bed}.median.txt | awk '$5 > $6' | cut -d ' ' -f 2-4 | sed "s/ /\t/g" | bedtools merge -d 2000 -i - | awk -v OFS="\t" '{print $1,$2,$3,$1"_region"NR}' > ${f%.first_pass.peaks.1kb.annotated.signal.bed}.second_pass.peaks.bed
 done
