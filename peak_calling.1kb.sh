@@ -55,7 +55,7 @@ for f in *.first_pass.peaks.1kb.annotated.signal.bed
  do sed 's/\(.*\)_/\1\t/' $f | cut -f4,6 | datamash -W groupby 1 perc:50 2 > ${f%.bed}.median.txt
 done
 echo
-echo "STEP10: get local second pass peaks per chromosome"
+echo "STEP10: get local first second peaks per chromosome"
 for f in *.first_pass.peaks.1kb.annotated.signal.bed
  do sed "s/\(.*\)_/\1\t/" $f | cut -f1-4,6 | join -1 4 -2 1 - ${f%.bed}.median.txt | awk '$5 > $6' | cut -d ' ' -f 2-4 | sed "s/ /\t/g" | bedtools merge -d 2000 -i - | awk -v OFS="\t" '{print $1,$2,$3,$1"_region"NR}' > ${f%.first_pass.peaks.1kb.annotated.signal.bed}.second_pass.peaks.bed
 done
@@ -65,20 +65,20 @@ for f in *.second_pass.peaks.bed
  do bedtools makewindows -b $f -w 1000 | bedtools intersect -a - -b $f -wa -wb | awk -F '\t' 'BEGIN { OFS=FS } $7 != save { counter = 1; save = $7 } { print $0, counter++ }' | cut -f1-3,7,8 | sed 's/\(.*\)\t/\1_/' > ${f%.bed}.1kb.annotated.bed
 done
 echo
-echo "STEP12: extract bigwig values for every 1kb bin of first pass peaks per chromosome"
+echo "STEP12: extract bigwig values for every 1kb bin of second pass peaks per chromosome"
 ls *.second_pass.peaks.1kb.annotated.bed | sed "s/.bed//g" | xargs -P$threads -I{} sh -c "bigWigAverageOverBed $bw {}.bed {}.tab" -- {}
 echo
-echo "STEP13: prepare signal input of first pass peaks"
+echo "STEP13: prepare signal input of second pass peaks"
 for f in *.second_pass.peaks.1kb.annotated.bed
  do paste $f ${f%.bed}.tab | cut -f 1-4,9 > ${f%.bed}.signal.bed
 done
 echo
-echo "STEP14: calculate medians of first pass peaks"
+echo "STEP14: calculate medians of second pass peaks"
 for f in *.second_pass.peaks.1kb.annotated.signal.bed
  do sed 's/\(.*\)_/\1\t/' $f | cut -f4,6 | datamash -W groupby 1 perc:50 2 > ${f%.bed}.median.txt
 done
 echo
-echo "STEP15: get local second pass peaks per chromosome"
+echo "STEP15: get local third pass peaks per chromosome"
 for f in *.second_pass.peaks.1kb.annotated.signal.bed
  do sed "s/\(.*\)_/\1\t/" $f | cut -f1-4,6 | join -1 4 -2 1 - ${f%.bed}.median.txt | awk '$5 > $6' | cut -d ' ' -f 2-4 | sed "s/ /\t/g" | bedtools merge -d 2000 -i - | awk -v OFS="\t" '{print $1,$2,$3,$1"_region"NR}' > ${f%.second_pass.peaks.1kb.annotated.signal.bed}.third_pass.peaks.bed
 done
