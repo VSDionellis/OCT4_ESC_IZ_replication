@@ -21,7 +21,7 @@ done
 echo
 echo
 for f in *.1kb_annotated.tab
- do paste ${f%.1kb_annotated.tab}.bed.1kb_annotated.bed $f | cut -f1-4,9 | sed "s/_/\t/g;s/\tregion/_region/g" | awk -v OFS="\t" '{print $4, $6, $0}' | sort -k1,1 -k2,2nr | awk -v OFS="\t" '!seen[$1]++ {print $3,$4,$5,$6,$8}' > ${f%.1kb_annotated.tab}.summits.bed
+ do paste ${f%.1kb_annotated.tab}.bed.1kb_annotated.bed $f | cut -f1-4,9 | sed "s/_/\t/g" | awk -v OFS="\t" '{print $4, $6, $0}' | sort -k1,1 -k2,2nr | awk -v OFS="\t" '!seen[$1]++ {print $3,$4,$5,$6,$8}' > ${f%.1kb_annotated.tab}.summits.bed
 done
 echo
 echo "DONE!!!"
