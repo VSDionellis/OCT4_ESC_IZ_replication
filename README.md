@@ -47,7 +47,7 @@ sudo apt update
 sudo apt install -y bedtools datamash wget
 ```
 
-or install it from source
+or install bedtools from source
 
 ```
 wget https://github.com/arq5x/bedtools2/releases/download/v2.29.1/bedtools-2.29.1.tar.gz
@@ -64,11 +64,20 @@ chmod +x bigWigAverageOverBed
 sudo mv bigWigAverageOverBed /usr/local/bin/
 ```
 
-macOS (Homebrew)
+### macOS (Homebrew)
 
 ```bash
 brew install bedtools datamash
 brew install ucsc-bigwigaverageoverbed
+```
+
+or install bedtools from source
+
+```
+wget https://github.com/arq5x/bedtools2/releases/download/v2.29.1/bedtools-2.29.1.tar.gz
+tar -zxvf bedtools-2.29.1.tar.gz
+cd bedtools2
+make
 ```
 
 ---
