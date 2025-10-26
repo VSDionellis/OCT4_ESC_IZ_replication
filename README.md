@@ -50,7 +50,7 @@ sudo apt install -y bedtools datamash wget
 or install bedtools from source
 
 ```
-wget https://github.com/arq5x/bedtools2/releases/download/x.x.x/bedtools-x.x.x.tar.gz
+wget https://github.com/arq5x/bedtools2/releases/download/vx.x.x/bedtools-x.x.x.tar.gz
 tar -zxvf bedtools-x.x.x.tar.gz
 cd bedtools2
 make
@@ -74,7 +74,7 @@ brew install ucsc-bigwigaverageoverbed
 or install bedtools from source
 
 ```
-curl -L -o bedtools-x.x.x.tar.gz https://github.com/arq5x/bedtools2/releases/download/v2.29.1/bedtools-x.x.x.tar.gz
+curl -L -o bedtools-x.x.x.tar.gz https://github.com/arq5x/bedtools2/releases/download/vx.x.x/bedtools-x.x.x.tar.gz
 tar -zxvf bedtools-x.x.x.tar.gz
 cd bedtools2
 make
