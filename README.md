@@ -12,7 +12,7 @@ It includes two Bash pipelines and one R analysis script.
 | `refine_peaks_1kb_resolution.sh` | Refines any input BED file of peaks to 1 kb resolution using the corresponding bigWig. Identifies the most enriched 1 kb bin (summit) within each input region. |
 | `residual_regression.R` | Performs residual regression analyses and generates annotated plots comparing ON/OFF conditions for ATAC-seq or EdU incorporation data. Can also be adjusted for other data types. |
 
-============================================================================================================================================================================================================================
+
 
 2. ⚙️ Dependencies
 
@@ -71,7 +71,7 @@ brew install bedtools datamash
 brew install ucsc-bigwigaverageoverbed
 ```
 
-============================================================================================================================================================================================================================
+
 
 3.🚀 Usage
 
@@ -93,10 +93,11 @@ Output:
 `<output_name>.1kb_resolution.peaks.bed` — list of high-confidence peaks merged across all chromosomes.
 
 > 🔧 TIPS
+```
 -| Adjust sensitivity-specificity in line 37 by modifying the perc value of "datamash perc:95".  This is practically the background threshold. Values 1-100.  The lower the value the more peaks will be called. It is suggested to lower this value for broad peak calling. 
 -| To split broader peaks with multiple summits modify perc value in lines 55,78.  Values 1-100. Higher values split the broader peaks in multiple summits.  For peak calling of proader peaks low values are suggested.
 -| If peaks are too many and close enough (e.g from potential sequencing gaps or artifacts, or broad peak calling), please merge the detected peaks by bedtools merge '-d' values in lines 37,  60,  83, where '-d'  applies for the distance in bases (e.g. -d 10000 stands for merging peaks found in a distance of less than 10kb).
-
+```
 
 #2️⃣ Peak Refinement of Existing BED Files
 
