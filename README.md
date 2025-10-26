@@ -4,7 +4,7 @@ This repository provides a complete workflow for **1 kb–resolution peak detect
 It includes two Bash pipelines and one R analysis script.
 
 
-1. 📁 Contents
+##1. 📁 Contents
 
 | Script | Description |
 |---------|--------------|
@@ -14,7 +14,7 @@ It includes two Bash pipelines and one R analysis script.
 
 ---
 
-2. ⚙️ Dependencies
+##2. ⚙️ Dependencies
 
 🧩 Common Requirements
 
@@ -73,7 +73,7 @@ brew install ucsc-bigwigaverageoverbed
 
 ---
 
-3.🚀 Usage
+##3.🚀 Usage
 
 #1️⃣ Peak Calling at 1 kb Resolution
 
@@ -136,6 +136,6 @@ Three plots (`p1`, `p2`, `p3`) showing relationships between ON/OFF conditions a
 
 ---
 
-4. 👩‍🔬 Citation
+##4. 👩‍🔬 Citation
 
 If you use or adapt these scripts, please cite your dataset and this repository appropriately.
